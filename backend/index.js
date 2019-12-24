@@ -66,7 +66,7 @@ app.get('/latest', (req, res) => {
         res.json({roll: null, text: ''});
     }
     else {
-        res.json({roll: g.latest, text: g.getLatest()});
+        res.json({roll: 1 + g.latest, text: g.getLatest()});
     }
 });
 
