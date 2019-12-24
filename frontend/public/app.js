@@ -90,5 +90,5 @@ async function postData(url = '', data = {}) {
 
 async function roll(dice) {
     postData('/roll', {});
-    dice.style.color = 'red';
+    dice.style.color = '#2ba00d';
 }
