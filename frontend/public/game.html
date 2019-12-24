@@ -25,19 +25,40 @@
         </div>
     </header>
     <main id="main">
-        <h2>Enter Session Code</h2>
-        <input class="text" type="text" id="code">
-        <button class="button" type="button" onclick="joinSession()">Join</button>
-        <p id="join-output"></p>
-        <h2>Or Create A Session</h2>
-        <button class="button" type="button" onclick="createSession()">New Session</button>
+        <p>Tap the dice to roll!</p>
+        <div id="dice" onclick="roll(this)"></div>
+        <p id="latest"></p>
     </main>
-
     <script>
-        document.addEventListener('DOMContentLoaded', async function (ev) {
-            fetch('/leave');
-            setTimeout(pageLoad, 500);
+        document.addEventListener('DOMContentLoaded', function () {
+            check();
         });
+
+        async function check() {
+            response = await fetch('/latest');
+            json = await response.json();
+            dice = document.getElementById('dice');
+            latest = document.getElementById('latest');
+            if (json.roll != null) {
+                if (json.roll == -1) {
+                    dice.innerHTML = '?';
+                    latest.style.fontSize = '2rem';
+                }
+                else {
+                    dice.innerHTML = json.roll;
+                    latest.style.fontSize = '2.5rem';
+                }
+                latest.innerHTML = json.text;
+            }
+            else {
+                dice.innerHTML = '?';
+                latest.innerHTML = 'No current roll';
+                latest.style.fontSize = '2rem';
+            }
+            dice.style.color = 'black';
+            setTimeout(check, 4000);
+        }
+
     </script>
 </body>
 

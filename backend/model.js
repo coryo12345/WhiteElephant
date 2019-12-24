@@ -11,7 +11,7 @@ class Game {
     }
 
     randomItem() {
-        return this.items[Math.random() * this.items.length];
+        return (Math.random() * this.items.length) | 0;
     }
 
     getLatest() {

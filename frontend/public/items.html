@@ -25,20 +25,16 @@
         </div>
     </header>
     <main id="main">
-        <h2>Enter Session Code</h2>
-        <input class="text" type="text" id="code">
-        <button class="button" type="button" onclick="joinSession()">Join</button>
-        <p id="join-output"></p>
-        <h2>Or Create A Session</h2>
-        <button class="button" type="button" onclick="createSession()">New Session</button>
+        <h2>Enter 6 Options</h2>
+        <p id="error" style="display: none">Something went wrong. Try again.</p>
+        <input type="text" name="" placeholder="Roll 1 Action" id="item1"><br />
+        <input type="text" name="" placeholder="Roll 2 Action" id="item2"><br />
+        <input type="text" name="" placeholder="Roll 3 Action" id="item3"><br />
+        <input type="text" name="" placeholder="Roll 4 Action" id="item4"><br />
+        <input type="text" name="" placeholder="Roll 5 Action" id="item5"><br />
+        <input type="text" name="" placeholder="Roll 6 Action" id="item6"><br />
+        <button onclick="submitItems()">Submit</button>
     </main>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', async function (ev) {
-            fetch('/leave');
-            setTimeout(pageLoad, 500);
-        });
-    </script>
 </body>
 
 </html>

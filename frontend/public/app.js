@@ -6,10 +6,24 @@
 //     });
 // }
 
+document.addEventListener('DOMContentLoaded', pageLoad);
+
+async function pageLoad() {
+    session = document.getElementById('session');
+    response = await fetch('/code');
+    json = await response.json();
+    if (json.code == null) {
+        session.innerHTML = 'None';
+    }
+    else {
+        session.innerHTML = json.code;
+    }
+}
+
 async function createSession() {
     response = await fetch('/create');
     json = await response.json();
-    setSession(json.id);
+    window.location = '/items.html';
 }
 
 async function joinSession() {
@@ -22,6 +36,37 @@ async function joinSession() {
     else {
         p = document.getElementById('join-output');
         p.innerHTML = "That session does not exist!";
+    }
+}
+
+function setSession(id = 0) {
+    session = document.getElementById('session');
+    session.innerHTML = id;
+    window.location = '/game.html';
+}
+
+async function submitItems() {
+    item1 = document.getElementById('item1');
+    item2 = document.getElementById('item2');
+    item3 = document.getElementById('item3');
+    item4 = document.getElementById('item4');
+    item5 = document.getElementById('item5');
+    item6 = document.getElementById('item6');
+    items = {
+        item1: item1.value,
+        item2: item2.value,
+        item3: item3.value,
+        item4: item4.value,
+        item5: item5.value,
+        item6: item6.value
+    };
+    json = postData('/setItems', items);
+    if (json.code != 'error') {
+        window.location = '/game.html';
+    }
+    else {
+        p = document.getElementById('error');
+        p.style.display = 'block';
     }
 }
 
@@ -43,7 +88,7 @@ async function postData(url = '', data = {}) {
     return await response.json(); // parses JSON response into native JavaScript objects
 }
 
-function setSession(id = 0) {
-    session = document.getElementById('session');
-    session.innerHTML = id;
+async function roll(dice) {
+    postData('/roll', {});
+    dice.style.color = 'red';
 }
