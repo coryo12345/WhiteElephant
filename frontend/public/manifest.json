@@ -1,0 +1,13 @@
+{
+    "name": "White Elephant",
+    "short_name": "Elephant",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "Scope": "/",
+    "start_url": ".",
+    "icons": [
+
+    ],
+    "splash_pages": null
+}
