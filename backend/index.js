@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3001;
+const port = 3101;
 var session = require('express-session');
 var Game = require('./model.js');
 
